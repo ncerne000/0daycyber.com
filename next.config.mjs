@@ -5,8 +5,8 @@ const nextConfig = {
   output: 'export',
   reactStrictMode: true,
   swcMinify: true,
-  assetPrefix: isProd ? '/0daycyber.com/' : '',
-  basePath: isProd ? '/0daycyber.com' : '',
+  assetPrefix: isProd ? '/' : '',
+  basePath: isProd ? '/' : '',
   trailingSlash: true
 };
 
