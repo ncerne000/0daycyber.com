@@ -35,7 +35,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <MantineProvider theme={zeroDayCyberTheme} defaultColorScheme="light">
-        <Script strategy="beforeInteractive" src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_SITE_KEY}`}/>
+        <Script strategy="beforeInteractive" src="https://www.google.com/recaptcha/api.js?render=6LedfWIqAAAAADtDAXVxKS8VVRh0dbDbjke-2xZM"/>
           <Header />
           {children}
           <div style={{ marginTop: 'auto' }}>
