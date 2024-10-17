@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import {
     TextInput,
     Textarea,
@@ -8,10 +8,33 @@ import {
     Title,
     Button
   } from "@mantine/core";
+import { IconCircle, IconCheck, IconX } from "@tabler/icons-react";
 import { useForm } from "@mantine/form";
 import { getCaptchaToken } from "../../lib/getToken";
+import Toast from "../general/Toast";
   
   export default function ContactForm() {
+    const [toastVisible, setToastVisible] = useState(false);
+    const [toastTitle, setToastTitle] = useState('');
+    const [toastMessage, setToastMessage] = useState('');
+    const [toastIcon, setToastIcon] = useState<ReactNode>(null);
+    const [toastColor, setToastColor] = useState('');
+    const [toastLoading, setToastLoading] = useState(false);
+
+    const showToast = (title: string, message: string, color: string, icon: ReactNode, loading: boolean, duration = 3000) => {
+      setToastTitle(title);
+      setToastMessage(message);
+      setToastIcon(icon);
+      setToastVisible(true);
+      setToastColor(color);
+      setToastLoading(loading);
+  
+      /* Hide the toast after `duration` milliseconds */
+      setTimeout(() => {
+        setToastVisible(false);
+      }, duration);
+    };
+    
     const form = useForm({
       initialValues: {
         name: "",
@@ -58,27 +81,42 @@ import { getCaptchaToken } from "../../lib/getToken";
     });
 
     const handleSubmit = async (values: typeof form.values) => {
+
+      /* Show a toast notification when form submission starts */
+      showToast('Submitting...', 'Your message is being sent.', 'blue', <IconCircle />, true);
+
       const token = await getCaptchaToken();
       /* Data to submit to our API */
       const data = {
         ...values,
         token
       };
-      console.log(token)
 
-      const response = await fetch("https://9sa9xaoon9.execute-api.us-east-1.amazonaws.com/prod/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      try {
+        const response = await fetch("https://9sa9xaoon9.execute-api.us-east-1.amazonaws.com/prod/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
 
-      const result = await response.json();
-      console.log(result);
-    };
+        const result = await response.json();
+        
+        /* Update the toast based on the API response */
+        console.log(response.status)
+        if (response.ok) {
+          showToast('Success', result.msg || 'Message received!', 'teal', <IconCheck/>, false);
+        } else {
+          showToast('Error', 'Failed to send the message.', 'red', <IconX/>, false);
+        }
+      } catch (error) {
+        showToast('Error', 'Network error occurred', 'red', <IconX />, false);
+      }
+    }
   
     return (
+      <>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Title
           order={2}
@@ -131,6 +169,18 @@ import { getCaptchaToken } from "../../lib/getToken";
           </Button>
         </Group>
       </form>
+        {/* Conditionally render the Toast component */}
+          {toastVisible && (
+          <Toast
+            title={toastTitle}
+            message={toastMessage}
+            onclose={() => setToastVisible(false)}
+            icon={toastIcon}
+            color={toastColor}
+            loading={toastLoading}
+          />
+        )}
+      </>
     );
   }
   

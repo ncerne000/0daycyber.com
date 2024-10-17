@@ -2,11 +2,12 @@
 
 import "@mantine/core/styles.css";
 import React from "react";
-import { MantineProvider, ColorSchemeScript, Container } from "@mantine/core";
+import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { zeroDayCyberTheme } from "../../theme";
 import { usePathname } from 'next/navigation';
+import { Notifications } from "@mantine/notifications";
 import Script from "next/script";
 
 const metadata = {
@@ -35,7 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <MantineProvider theme={zeroDayCyberTheme} defaultColorScheme="light">
-        <Script strategy="beforeInteractive" src="https://www.google.com/recaptcha/api.js?render=6LedfWIqAAAAADtDAXVxKS8VVRh0dbDbjke-2xZM"/>
+          <Script strategy="beforeInteractive" src="https://www.google.com/recaptcha/api.js?render=6LedfWIqAAAAADtDAXVxKS8VVRh0dbDbjke-2xZM"/>
           <Header />
           {children}
           <div style={{ marginTop: 'auto' }}>
