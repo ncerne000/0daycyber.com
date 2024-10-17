@@ -21,18 +21,13 @@ import Toast from "../general/Toast";
     const [toastColor, setToastColor] = useState('');
     const [toastLoading, setToastLoading] = useState(false);
 
-    const showToast = (title: string, message: string, color: string, icon: ReactNode, loading: boolean, duration = 3000) => {
+    const showToast = (title: string, message: string, color: string, icon: ReactNode, loading: boolean) => {
       setToastTitle(title);
       setToastMessage(message);
       setToastIcon(icon);
       setToastVisible(true);
       setToastColor(color);
       setToastLoading(loading);
-  
-      /* Hide the toast after `duration` milliseconds */
-      setTimeout(() => {
-        setToastVisible(false);
-      }, duration);
     };
     
     const form = useForm({
@@ -111,7 +106,7 @@ import Toast from "../general/Toast";
           showToast('Error', 'Failed to send the message.', 'red', <IconX/>, false);
         }
       } catch (error) {
-        showToast('Error', 'Network error occurred', 'red', <IconX />, false);
+        showToast('Error', 'Network error occurred.', 'red', <IconX />, false);
       }
     }
   
