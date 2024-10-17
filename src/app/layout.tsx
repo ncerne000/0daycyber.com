@@ -7,7 +7,6 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { zeroDayCyberTheme } from "../../theme";
 import { usePathname } from 'next/navigation';
-import { Notifications } from "@mantine/notifications";
 import Script from "next/script";
 
 const metadata = {
