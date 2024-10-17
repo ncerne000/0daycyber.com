@@ -50,7 +50,7 @@ export default function About() {
           </Flex>
         </Flex>
         <Flex direction="column" align="center" my="100px">
-          <Title order={2} mb="lg">Accreditation</Title>
+          <Title order={2} mb="lg">Accreditations</Title>
           <Flex w="70%" justify="center" gap="xl">
             <Anchor href="https://0daycyber.com" target="_blank">
               <Image w="250px" h="250px" alt="cca" src="/images/cca.png" />

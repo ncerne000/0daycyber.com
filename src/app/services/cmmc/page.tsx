@@ -26,7 +26,7 @@ export default function CMMC() {
             }/>
         </Flex>
         <Divider my="20px" align="center"/>
-        <Flex my="50px">
+        <Flex my="50px" justify="center">
             <Flex direction="column" my="100px" align="center">
               <Title align="center" mb="md"> Guarantees</Title>
               <List spacing="sm" size="md" center icon={
