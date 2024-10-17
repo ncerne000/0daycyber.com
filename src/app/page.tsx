@@ -12,17 +12,16 @@ export default function HomePage() {
     <Flex h={{lg: "70vh"}}>
       <TwoColummGridContainer  
         child1={
-          <Flex direction="column" align={{base: "center", md: "normal", lg: "normal"}}>
-            <Title order={1} className={classes.title}>
-              <span style={{ color: "#4169E1" }}>Zeroing</span> in on Security.
-            </Title>
-            <Text className={classes.text} fw="600">Providing Comprehensive CMMC Compliance Assessments and Cutting-Edge Penetration Testing services to secure your infrastructure.</Text>
-            <ConsultationButton/>     
-          </Flex>
-        } 
+          <Flex direction="column" align="center">
+            <Image alt="logo" h={{base: 200, md: 400}} w={{base: 200, md: 400}} src="/0daycyber-final-only-shield.svg"/>
+          </Flex>} 
         child2={
-        <Flex direction="column" align="center">
-            <Image alt="logo" h={400} w={400} src="/0daycyber-final-only-shield.svg"/>
+        <Flex direction="column" align={{base: "center", md: "normal", lg: "normal"}}>
+          <Title order={1} className={classes.title}>
+            <span style={{ color: "#4169E1" }}>Zeroing</span> in on Security.
+          </Title>
+          <Text className={classes.text} fw="600">Providing Comprehensive CMMC Compliance Assessments and Cutting-Edge Penetration Testing services to secure your infrastructure.</Text>
+          <ConsultationButton/>     
         </Flex>} 
       />
     </Flex>
