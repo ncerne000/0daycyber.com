@@ -49,7 +49,7 @@ export function HeroBullets() {
             </Link>
           </Group>
         </div>
-        <Image alt="Department of Defense Seal" src="/seal_DoD.svg" className={classes.image} />
+        <Image alt="Department of Defense Seal" src="/Seal_DoD.svg" className={classes.image} />
       </div>
     </Container>
   );
