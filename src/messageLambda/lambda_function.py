@@ -16,6 +16,11 @@ SENDGRID_API_KEY_ARN = os.environ.get('SENDGRID_API_KEY_ARN')
 RECAPTCHA_SECRET_KEY_ARN = os.environ.get('RECAPTCHA_SECRET_KEY_ARN')
 AWS_REGION = os.environ.get('AWS_REGION')
 
+HEADERS = {
+    "Access-Control-Allow-Origin": "https://0daycyber.com",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token"
+}
 
 def verify_recaptcha(token, recaptcha_secret_key):
     """
@@ -61,6 +66,7 @@ def lambda_handler(event, context):
     except (KeyError, json.JSONDecodeError):
         return {
             'statusCode': 400,
+            'headers': HEADERS,
             'body': json.dumps('Invalid request body.')
         }
     
@@ -68,6 +74,7 @@ def lambda_handler(event, context):
     if not all([name, email, message]):
         return {
             'statusCode': 400,
+            'headers': HEADERS,
             'body': json.dumps('Missing required fields')
         }
     
@@ -75,12 +82,14 @@ def lambda_handler(event, context):
     if not re.match(r'^[a-zA-Z\s]+$', name) or len(name) < 2 or len(name) > 50:
         return {
             'statusCode': 400,
+            'headers': HEADERS,
             'body': json.dumps('Invalid name. Name must only contain letters, be at least 2 characters, and no more than 50 characters.')
         }
 
     if not re.match(r'^\S+@\S+\.\S+$', email):
         return {
             'statusCode': 400,
+            'headers': HEADERS,
             'body': json.dumps('Invalid email format.')
         }
 
@@ -88,12 +97,14 @@ def lambda_handler(event, context):
         if not re.match(r'^\d+$', phone) or len(phone) > 15:
             return {
                 'statusCode': 400,
+                'headers': HEADERS,
                 'body': json.dumps('Invalid phone number. Phone number must contain only digits and be no more than 15 characters.')
             }
 
     if len(message.strip()) == 0 or len(message) > 500:
         return {
             'statusCode': 400,
+            'headers': HEADERS,
             'body': json.dumps('Invalid message. Message cannot be empty and must be no more than 500 characters.')
         }
     
@@ -101,6 +112,7 @@ def lambda_handler(event, context):
     if not verify_recaptcha(token, recaptcha_secret_key):
         return {
             'statusCode': 400,
+            'headers': HEADERS,
             'body': json.dumps('Invalid captcha token.')
         }
     
@@ -127,11 +139,13 @@ def lambda_handler(event, context):
     except Exception as e:
         return {
             'statusCode': 400,
+            'headers': HEADERS,
             'body': json.dumps(f'Error sending email: {str(e)}')
         }
     
     # Return the success response
     return {
         'statusCode': 200,
+        'headers': HEADERS,
         'body': json.dumps('Message received.')
     }
