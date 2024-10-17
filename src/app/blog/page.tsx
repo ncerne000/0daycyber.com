@@ -17,17 +17,15 @@ export default async function Blog() {
         <Flex
             w="80%"
             key={latestPost.slug}
-            direction={{ base: 'column', md: 'row' }} // column on smaller screens, row on medium and up
+            direction={{ base: 'column-reverse', md: 'row' }} // column on smaller screens, row on medium and up
             align="center"
             gap="md"
           >
-            {/* Image Section on the Top for small screens, Right for larger */}
-            <Anchor href={latestPost.external} target='_blank' rel='noopener noreferrer' underline='never'>
-              <Image src={latestPost.image} alt={latestPost.title} width="100%" />
-            </Anchor>
-
+            
             {/* Text Section on the Bottom for small screens, Left for larger */}
             <Stack w="60%" spacing="xs">
+            <Title display={{base: 'none', md: 'flex'}} order={2} size={{ base: 'h3', sm: 'h2', md: 'h1' }}>Latest Post</Title>
+            <Divider display={{base: 'none', md: 'flex'}}/>
               <Anchor href={latestPost.external} target='_blank' rel='noopener noreferrer' underline='never'>
                 <Title order={2} size={{ base: 'h3', sm: 'h2', md: 'h1' }}>{latestPost.title}</Title>
               </Anchor>
@@ -38,6 +36,11 @@ export default async function Blog() {
               </Text>
               <Text>{latestPost.summary}</Text>
             </Stack>
+            
+            {/* Image Section on the Top for small screens, Right for larger */}
+            <Anchor order={{ base: 1, md: 2 }} href={latestPost.external} target='_blank' rel='noopener noreferrer' underline='never'>
+              <Image src={latestPost.image} alt={latestPost.title} width="100%" />
+            </Anchor>
           </Flex>
 
         {/* Smaller Post Cards */}
