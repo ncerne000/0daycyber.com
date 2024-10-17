@@ -93,7 +93,7 @@ import Toast from "../general/Toast";
       };
 
       try {
-        const response = await fetch("https://9sa9xaoon9.execute-api.us-east-1.amazonaws.com/prod/contact", {
+        const response = await fetch("https://bklibva349.execute-api.us-east-1.amazonaws.com/prod/contact", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
