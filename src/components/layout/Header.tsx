@@ -276,7 +276,7 @@ import {
             </UnstyledButton>
             <Collapse in={blogLinksOpened}>{blogLinks}</Collapse>
 
-            <a href="#" className={classes.link}>
+            <a href="/contact" className={classes.link}>
               Contact
             </a>
   

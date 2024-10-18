@@ -9,13 +9,13 @@ export default function Contact() {
     <Flex direction="column">
           <FlexGridContainer  
           child1={
-            <Flex direction="column" h="100%" w={{base: "90%", lg: "70%"}} justify="center" my={{base: "40px"}} style={{padding: 0}}>
+            <Flex direction="column" h="100%" w={{base: "100%", lg: "70%"}} justify="center" my={{base: "40px"}} style={{padding: 0}}>
               <Title className={classes.titleSmall} order={3}>Book a Free <span style={{ color: "#4169E1" }}>Consultation</span></Title>
               <Text className={classes.text}>We will get back to you within one business day.</Text>
             </Flex>
           } 
           child2={
-            <Container my={{base: "40px"}} w={{base: "90%", lg: "70%"}}  style={{padding: 0}}>
+            <Container my={{base: "40px"}} w={{base: "100%", lg: "70%"}}  style={{padding: 0}}>
               <Card shadow="lg">
                 <ContactForm/>
               </Card>
