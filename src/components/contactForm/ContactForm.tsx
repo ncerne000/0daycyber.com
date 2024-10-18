@@ -99,7 +99,6 @@ import Toast from "../general/Toast";
         const result = await response.json();
         
         /* Update the toast based on the API response */
-        console.log(response.status)
         if (response.ok) {
           showToast('Success', result.msg || 'Message received!', 'teal', <IconCheck/>, false);
         } else {
